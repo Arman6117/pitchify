@@ -53,7 +53,7 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
         <img src={image} alt="Placeholder" className="startup-card_img" />
       </Link>
       <div className="flex-between gap-3 mt-5">
-        <Link href={`/query?=${category}`}>
+        <Link href={`/query?=${category.toLowerCase()}`}>
           <p className="text-16-medium">{category}</p>
         </Link>
         <Button asChild className="startup-card_btn">
