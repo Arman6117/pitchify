@@ -10,9 +10,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // experimental: {
-  //   ppr: true,
-  // },
+  experimental: {
+    after: true,
+  },
   devIndicators: {
     appIsrStatus: true,
     buildActivity: true,

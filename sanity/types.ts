@@ -162,7 +162,7 @@ export type Author = {
   name?: string;
   username?: string;
   email?: string;
-  image?: string ;
+  image?: string;
   bio?: string;
 };
 
@@ -229,6 +229,12 @@ export type STARTUP_QUERIES_BY_IDResult = {
   category: string | null;
   pitch: string | null;
 } | null;
+// Variable: STARTUP_VIEWS_QUERY
+// Query: *[_type == "startup" && _id == $id][0] {  _id, views }
+export type STARTUP_VIEWS_QUERYResult = {
+  _id: string;
+  views: number | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -236,5 +242,6 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"startup\" && defined(slug.current) && !defined($search) || category match $search || title match $search || author->name match $search] | order(_createdAt desc) {\n    _id,\n    _createdAt,\n    title,\n    slug,\n    author -> {\n        _id,\n        name,\n        bio,\n        image\n    },\n    views,\n    description,\n    image,\n    category,\n } \n": STARTUP_QUERIESResult;
     "*[_type == \"startup\" && _id == $id][0]  {\n    _id,\n    _createdAt,\n    title,\n    slug,\n    author -> {\n        _id,\n      username,\n        name,\n        bio,\n        image\n    },\n    views,\n    description,\n    image,\n    category,\n      pitch\n } ": STARTUP_QUERIES_BY_IDResult;
+    "*[_type == \"startup\" && _id == $id][0] {\n  _id, views\n }": STARTUP_VIEWS_QUERYResult;
   }
 }
