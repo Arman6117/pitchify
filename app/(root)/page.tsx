@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import SearchForm from "@/components/search-form";
 import StartupCard, { StartupTypeCard } from "@/components/startup-card";
 
@@ -12,7 +13,8 @@ export default async function Home({
   const query = (await searchParams).query;
   const params = { search: query || null };
   const { data: post } = await sanityFetch({ query: STARTUP_QUERIES,params });
-
+ const session = await auth();
+ console.log(session?.id)
   return (
     <>
       <section className="pink_container">

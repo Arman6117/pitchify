@@ -1,10 +1,14 @@
-import { formatDate } from "@/lib/utils";
-import { EyeIcon } from "lucide-react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import { Button } from "./ui/button";
+
 import { Author, Startup } from "@/sanity/types";
+
+import { formatDate } from "@/lib/utils";
+
+import { Button } from "./ui/button";
+
+import { EyeIcon } from "lucide-react";
 export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
 const StartupCard = ({ post }: { post: StartupTypeCard }) => {
   const {
@@ -17,6 +21,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
     category,
     views,
   } = post;
+  // const
   return (
     <li className="startup-card  group">
       <div className="flex-between ">
@@ -41,7 +46,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
         </div>
         <Link href={`/user/${author?._id}`}>
           <Image
-            src={"https://placehold.co/48x48"}
+            src={author?.image}
             alt="placeholder"
             width={48}
             height={48}
