@@ -1,14 +1,17 @@
 "use client";
 import React, { useActionState, useState } from "react";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
+import { ZodError, z } from "zod";
+
+import { formSchema } from "@/lib/validation";
+
+import { Send } from "lucide-react";
+
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from "./ui/button";
-import { Send } from "lucide-react";
-import { formSchema } from "@/lib/validation";
-import {toast, useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
-import { ZodError, z } from "zod";
+import { Textarea } from "./ui/textarea";
+import { Input } from "./ui/input";
 
 const StartupForm = () => {
   const router = useRouter();
@@ -42,7 +45,7 @@ const StartupForm = () => {
         const fieldsError = error.flatten().fieldErrors;
         setErrors(fieldsError as unknown as Record<string, string>);
         toast({
-            style:{backgroundColor:"darkred", color:'white'},
+          style: { backgroundColor: "darkred", color: "white" },
           title: "Error",
           description: "Please check your input and try again",
           variant: "destructive",
@@ -51,7 +54,7 @@ const StartupForm = () => {
       }
 
       toast({
-        style:{backgroundColor:"red"},
+        style: { backgroundColor: "red" },
         title: "Error",
         description: "An unexpected error occurred",
         variant: "destructive",
