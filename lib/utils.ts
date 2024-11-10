@@ -12,8 +12,11 @@ export function formatDate(date: string) {
   });
 }
 
-export function formatViewText(views:string) {
-  
-  if(views <= '1' ) return `View: ${views}`
-  return `Views: ${views}`
+export function formatViewText(views: string) {
+  if (views <= "1") return `View: ${views}`;
+  return `Views: ${views}`;
+}
+
+export function parseCreatePitchResponse<T>(response: T) {
+  return JSON.parse(JSON.stringify(response));
 }
